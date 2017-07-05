@@ -1,4 +1,27 @@
 #!/usr/bin/perl -w
 
-my $var = 3.2;
-my ($a, $b) = @_;
+use strict;
+use warnings;
+use 5.010;
+use Getopt::Long;
+
+# https://raw.githubusercontent.com/pciutils/pciids/master/pci.ids
+
+# NVIDIA code 43 fix
+# <kvm>
+#   <hidden state='on'/>
+# </kvm>
+
+# Your CPU must support hardware virtualization (for kvm) and IOMMU (for the passthrough itself)
+# Your motherboard must also support IOMMU
+# Your guest GPU ROM must support UEFI
+# It is therefore reccomanded to only pass through PCI devices which the kernel is able to reset, as evidenced by the presence of a reset file in the PCI device sysfs node, such as /sys/bus/pci/devices/0000:00:1a.0/reset.
+
+# Actions/Commands
+# check <domain>
+#   - Domain exists
+#   - Domain uses EFI/OVMF
+#   - Domain has GPU attached
+#     * Find all hostdev[@type='pci']
+#     * Look up each PCI vendor and device 
+#   - Domain has subdevices of GPU attached (audio iface, etc.)

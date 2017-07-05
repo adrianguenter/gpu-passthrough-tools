@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perls -w
 
 my $var = 3.2;
 my ($a, $b) = @_;

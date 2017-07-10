@@ -1,0 +1,3 @@
+[submodule "vendor/adrianguenter/perl-mylib"]
+	path = vendor/adrianguenter/perl-mylib
+	url = https://github.com/adrianguenter/perl-mylib.git

@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+
+use 5.010;
+use strict;
+use warnings;
+use Sys::Virt;
+use XML::XPath;
+
+my $uri = "qemu:///system";
+
+my $vmm = Sys::Virt->new(uri => $uri);
+
+my @domains = $vmm->list_domains();
+
+foreach my $dom (@domains) {
+  print "Domain ", $dom->get_id, " ", $dom->get_name, "\n";
+}
+
+my $dom = $vmm->get_domain_by_name('Windows81');
+
+my $xml = $dom->get_xml_description();
+
+my $xp = XML::XPath->new(xml => $dom->get_xml_description());
+ 
+my $nodeset = $xp->find('/domain/devices/hostdev[@type="usb"]');
+ 
+foreach my $node ($nodeset->get_nodelist) {
+    print "FOUND\n\n",
+        XML::XPath::XMLParser::as_string($node),
+        "\n\n";
+}
+
+#use XML::LibXML;
+#
+#my $dom = XML::LibXML->new->parse_file('data.xml');
+#for my $node ($dom->findnodes('/category/event/@name')) {
+#    say $node->toString;
+#}

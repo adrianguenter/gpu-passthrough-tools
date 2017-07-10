@@ -1,0 +1,9 @@
+#!/usr/bin/perl -w
+
+use 5.010;
+use strict;
+use warnings;
+use FindBin;
+
+use lib '.'; # TODO: hardcode me to /usr/lib/? or use FindBin or …?
+use Local::GPUPassthroughTools;

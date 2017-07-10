@@ -1,1 +1,1 @@
-# libvirt-gpu-passthrough-tools
+# gpu-passthrough-tools

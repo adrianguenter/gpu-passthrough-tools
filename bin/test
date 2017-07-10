@@ -1,9 +1,11 @@
 #!/usr/bin/perl -w
-
-use 5.010;
 use strict;
 use warnings;
+use 5.018;
+
+use Cwd      qw(abs_path);
 use FindBin;
 
-use lib '.'; # TODO: hardcode me to /usr/lib/? or use FindBin or …?
-use Local::GPUPassthroughTools;
+use lib abs_path "$FindBin::Bin/../lib";
+
+use Local::Base;
